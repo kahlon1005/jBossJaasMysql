@@ -1,5 +1,5 @@
 ####Create database 
-
+```
 CREATE DATABASE tutorialsdb;
 
 DROP DATABASE IF EXISTS tutorialsdb;
@@ -23,12 +23,12 @@ INSERT INTO `tutorialsdb`.`users` (`username`, `password`) VALUES ('admin', 'adm
 INSERT INTO `tutorialsdb`.`roles` (`rolename`) VALUES ('user');
 INSERT INTO `tutorialsdb`.`users_roles` (`username`, `rolename`) VALUES ('admin', 'user');
 COMMIT;
-
+```
 ####Creating module for mysql :
 
-Navigate to ```<jboss_home>/modules/com```  e.g. ```C:\jboss-as-7.1.1.Final\modules\com```
-Create a folder called ```mysql``` in it and under ```mysql``` , create another folder named ```main```
-Under ```main``` , copy your mysql connector jar file  and create a file called ```module.xml```
+Navigate to `<jboss_home>/modules/com`  e.g. `C:\jboss-as-7.1.1.Final\modules\com`
+Create a folder called `mysql` in it and under `mysql` , create another folder named `main`
+Under `main` , copy your mysql connector jar file  and create a file called `module.xml`
 
 ```
 	<module xmlns="urn:jboss:module:1.1" name="com.mysql">	 
@@ -43,9 +43,9 @@ Under ```main``` , copy your mysql connector jar file  and create a file called 
 	</module>
 ```
 ####Configure module in standalone.xml
-Navigate to ```<jboss_home>/standalone/configuration``` and open ```standalone.xml```
+Navigate to `<jboss_home>/standalone/configuration` and open `standalone.xml`
 
-You will find a ```datasources``` tag under which you need to put this
+You will find a `datasources` tag under which you need to put this
 ```
 	 <datasource jta="false" jndi-name="java:/jBossJaasMysql" pool-name="jBossJaasMysql" enabled="true" use-ccm="false">
 		<connection-url>jdbc:mysql://localhost:3306/tutorialsdb</connection-url>
@@ -65,7 +65,7 @@ You will find a ```datasources``` tag under which you need to put this
 	</datasource>
 ```				
 jndi name is the identifier we are going to use in our security configuration.
-```jdbc:mysql://localhost:3306/tutorialsdb``` is our database to which jndi name points
+`jdbc:mysql://localhost:3306/tutorialsdb` is our database to which jndi name points
 
 
 Add following code to subsystems tag.
@@ -84,7 +84,7 @@ Add driver as module
 	</driver>
 ```
 
-Add following code to  ```standalone.xml```  under ```security-domains```
+Add following code to  `standalone.xml`  under `security-domains`
 
 
 ```
@@ -100,4 +100,4 @@ Add following code to  ```standalone.xml```  under ```security-domains```
 ```
 
 Deploy the application and visit 
-```http://localhost:8080/jBossJaasMysql/protected/index.jsp```  and enter username as admin and password as admin.
+`http://localhost:8080/jBossJaasMysql/protected/index.jsp`  and enter username as `admin` and password as `admin`.
