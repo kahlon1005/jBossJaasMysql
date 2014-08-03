@@ -103,3 +103,40 @@ Add following code to  `standalone.xml`  under `security-domains`
 
 Deploy the application and visit 
 `http://localhost:8080/jBossJaasMysql/protected/index.jsp`  and enter username as `admin` and password as `admin`.
+
+##Mysql setup
+
+Connect root User
+`shell> mysql --user=root --password=root mysql`
+
+Create guard User
+`mysql> CREATE USER 'guard'@'localhost' IDENTIFIED BY 'guard';`
+
+Grant all to guard User
+`GRANT ALL PRIVILEGES ON *.* TO 'guard'@'localhost' WITH GRANT OPTION;`
+
+
+Check Grants
+`SHOW GRANTS FOR 'guard'@'localhost';`
+
+Drop User
+`DROP USER 'guard'@'localhost';`
+
+
+Check MySql Version
+`SELECT VERSION();`
+
+Check Current User
+`SELECT CURRENT_USER();`
+
+Create database
+`CREATE DATABASE guard;`
+
+Connect User
+`shell > mysql -h localhost -u guard -p guard`
+
+Run explain plan
+`EXPLAIN <SQL Query>;`
+
+Find indexes on table
+`INDEX IN <table_name>;`
